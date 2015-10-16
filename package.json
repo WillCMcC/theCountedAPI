@@ -1,0 +1,19 @@
+{
+  "name": "thecounted",
+  "version": "1.0.0",
+  "description": "the counted api",
+  "main": "csvscript.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Will McCambley",
+  "license": "ISC",
+  "dependencies": {
+    "adm-zip": "^0.4.7",
+    "csv": "^0.4.6",
+    "express": "^4.13.3",
+    "mongodb": "^2.0.45",
+    "mongoose": "^4.1.10",
+    "request": "^2.65.0"
+  }
+}
