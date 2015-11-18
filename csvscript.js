@@ -41,10 +41,10 @@ request.get('https://interactive.guim.co.uk/2015/the-counted/thecounted-data.zip
       console.log("got it")
       var c = [];
       a = body.split("\n");
-
       for(var i = 2; i < a.length - 8; i++){
         b = a[i].split(",")
-
+				if(b.length>5){
+					console.log(b);
 				// console.log(b[0])
         var g = new Person({
 					id: b[0].replace(/"/g, ""),
@@ -66,6 +66,7 @@ request.get('https://interactive.guim.co.uk/2015/the-counted/thecounted-data.zip
 					if(err){console.log(err)}
 					console.log(data)
 				})
+			}
 
       }
 

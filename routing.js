@@ -3,6 +3,7 @@ var request = require('request');
 var url = require('url');
 var CacheControl = require("express-cache-control")
 var path    = require("path");
+var cors = require('cors');
 
 // how we implement custom routes with the database
 var dataBaseMethods = require('./dataBaseMethods');
@@ -16,7 +17,7 @@ var apirouter = express.Router();
 var cache = new CacheControl().middleware
 
 // middleware to use for all requests
-apirouter.use(cache("hours", 3), function(req, res, next) {
+apirouter.use(cache("hours", 3), cors(), function(req, res, next) {
     // do logging
     console.log('Route Call to ' + req.url);
   // make sure we go to the next routes and don't stop here
