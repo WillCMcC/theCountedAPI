@@ -1,0 +1,14 @@
+.welcome{
+  height: 20vh;
+  top: 10vh;
+  margin-top: 20vh;
+  text-align: center;
+}
+.site{
+  top:10vh;
+  height: 500%;
+  margin: 20px;
+}
+body {
+  position: relative;
+}

@@ -43,12 +43,18 @@ var Person = mongoose.model('Person', personSchema);
 module.exports.findAll = function(res){
   Person.find().
   exec(function(err,data){
-    res.send(data)
+    if(err){
+      res.status(500)
+    };
+    res.status(200).send(data)
   });
 }
 module.exports.findFilter = function(res, data){
   Person.find(data).
   exec(function(err,data){
-    res.send(data)
+    if(err){
+      res.status(500)
+    };
+    res.status(200).send(data)
   });
 }

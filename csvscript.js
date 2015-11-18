@@ -47,19 +47,20 @@ request.get('https://interactive.guim.co.uk/2015/the-counted/thecounted-data.zip
 
 				// console.log(b[0])
         var g = new Person({
-          name: b[0].replace(/"/g, ""),
-          age: b[1].replace(/"/g, ""),
-          sex: b[2].replace(/"/g, ""),
-          race: b[3].replace(/"/g, ""),
-          month: b[4].replace(/"/g, ""),
-          day: b[5].replace(/"/g, ""),
-          year: b[6].replace(/"/g, ""),
-          address: b[7].replace(/"/g, ""),
-          city: b[8].replace(/"/g, ""),
-          state: b[9].replace(/"/g, ""),
-          cause: b[10].replace(/"/g, ""),
-          dept: b[11].replace(/"/g, ""),
-          armed: b[12].replace(/"/g, ""),
+					id: b[0].replace(/"/g, ""),
+          name: b[1].replace(/"/g, ""),
+          age: b[2].replace(/"/g, ""),
+          sex: b[3].replace(/"/g, ""),
+          race: b[4].replace(/"/g, ""),
+          month: b[5].replace(/"/g, ""),
+          day: b[6].replace(/"/g, ""),
+          year: b[7].replace(/"/g, ""),
+          address: b[8].replace(/"/g, ""),
+          city: b[9].replace(/"/g, ""),
+          state: b[10].replace(/"/g, ""),
+          cause: b[11].replace(/"/g, ""),
+          dept: b[12].replace(/"/g, ""),
+          armed: b[13].replace(/"/g, ""),
         })
 				g.save(function(err, data){
 					if(err){console.log(err)}
