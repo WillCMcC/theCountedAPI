@@ -1,14 +1,56 @@
 .welcome{
-  height: 20vh;
-  top: 10vh;
-  margin-top: 20vh;
+  padding-top: 20vh;
+  height: 50vh;
+  color: black;
   text-align: center;
+  color: blue;
+  font-size: 3vh;:
 }
-.site{
-  top:10vh;
-  height: 500%;
-  margin: 20px;
+.welcome a{
+  color: black;
+  color: red;
 }
-body {
-  position: relative;
+.welcome .b{
+  color: blue;
+  font-size: 10vh;
+  font-weight: lighter;
+  display: inline-block;
+}
+.welcome .r{
+  color: red;
+  font-size: 10vh;
+  font-weight: lighter;
+  display: inline-block;
+}
+.text{
+  width: 75vw;
+  padding-right: 8vw;
+  overflow: auto;
+  position: fixed;
+  float: right;
+  top: 0%;
+  right: 0%;
+  height: 100%;
+
+}.howToUse{
+  position: auto;
+}.nav{
+  width:15vw;
+  height: 100%;
+}.navlist li {
+    text-align: left;
+    list-style-type: none;
+    display:inline-block
+}
+.nav h1{
+  font-size: 3vh;
+  display: inline-block;
+}.navtitle{
+  padding-top: 20vh;
+}body{
+  font-family: proxima-nova, sans-serif;
+}.site{
+  display: inline-block;
+}.racePie{
+  width: 25vw;
 }
