@@ -19,14 +19,15 @@
 
 <body >
   <div class="site" ng-app="liveInfoGraphic">
-  <div class="nav" ng-controller='navCtrl' >
+  <!-- <div class="nav" ng-controller='navCtrl' >
     <h1 class = "navtitle">The Counted API</h1>
     <div class = "navlist" >
-      <a href="#about">About The Counted API</a>
-      <a href="#live">Live Infographic</a>
-      <a href="#docs">Documentation</a>
+      <li><a href="#about">About The Counted API</a></li>
+      <li><a href="#docs">Documentation</a></li>
+      <li><a href="#live">Live Infographic</a></li>
+
     </div>
-  </div>
+  </div> -->
 <div class="text">
   <div class='welcome'>
     <h1 class="b">The Counted</h1>
@@ -44,6 +45,18 @@
       Guardian keeps a spreadsheet of information about citizens killed by police
       in the United States. This website is a tool to let you access that information
       so that you can see it, make cool things with it, and share it.
+    </p>
+  </div>
+  <div class="howToUse" id='docs' >
+    <h3>Documentation</h3>
+    <p>
+      There is just a single URL for this API. It returns a JSON. That URL is
+      /api/counted. Making a get request to /api/counted will return the full set of
+      officer involved killings this year. You can pass in arbitrary search key
+      value pairs with this format -- /api/counted?key=value&key&value. You will
+      receive an array of all objects that match your search. All of the objects
+      will have the following list of properties: Name, Address, Age, Armed, Cause,
+      City, State, Day, Month, Year, Race, and Sex.
     </p>
   </div>
   <div class="example" ng-controller='liveInfoGraphicCtrl' id='live'>
@@ -67,7 +80,7 @@
       <br ng-if({{index}}%4==0)>
     </div>
     </div>
-    <h1>Which states kill the most??</h1>
+    <h1>Which states kill the most?</h1>
     <canvas id="line2" class="chart chart-bar"
                     chart-data="stateData"
                     chart-labels='stateLabels'
@@ -75,13 +88,16 @@
     </canvas>
     <h2> The youngest person killed by police this year was <z>{{ageLabels.sort()[0]}}</z> years old</h2>
     <h2> The oldest person killed by police this year was <z>{{oldest}}</z> years old</h2>
-
+    <h1>Race breakdown</h1>
+    <canvas id="line2" class="chart chart-pie"
+                    chart-data="raceData"
+                    chart-labels='raceLabels'
+                    chart-legend="true"
+                    chart-click="">
+    </canvas>
 
   </div>
-  <div class="howToUse" id='docs'>
-    <h3>Documentation</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam id lectus in tellus vehicula convallis sed in orci. Fusce at arcu nec nisi molestie dapibus. Phasellus vel egestas eros. Integer porta ornare enim non rutrum. Morbi ultrices dolor a auctor efficitur. Donec id orci vel tellus tincidunt fringilla vel vitae justo. Fusce semper nisi maximus nunc semper varius. Maecenas eu venenatis lectus, non posuere enim. Quisque erat massa, faucibus vitae orci vitae, feugiat blandit ante. Cras consectetur tellus sed semper pretium. Fusce vel nulla mauris. Integer iaculis tortor dui, ac vulputate felis laoreet quis. Phasellus dapibus velit eget mollis porttitor. Phasellus euismod est at ultricies euismod. Nullam ac nibh non nulla tristique sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae nulla sem. Nam viverra quis lectus id mattis. Morbi lacinia egestas libero et ornare. Vivamus non diam sit amet nulla commodo varius. Aenean mattis, nibh at tristique condimentum, ligula erat malesuada nunc, mattis sagittis orci erat ac nibh. In eget accumsan lacus, nec rhoncus lacus. Duis vitae rutrum nisl. Duis non massa vel quam semper aliquam. Aenean id nibh eget ante maximus volutpat. Nullam pulvinar turpis non odio efficitur rutrum. Vivamus sem ex, interdum vitae metus ac, dictum finibus leo. Vestibulum mauris est, faucibus eget orci vitae, viverra luctus nunc. Ut aliquet, justo id volutpat aliquam, leo nunc venenatis erat, sed congue orci erat in felis. In a neque sit amet arcu interdum pretium sed sit amet magna. Nunc laoreet lacus velit, sit amet elementum urna finibus eu. Sed consequat cursus orci in consequat.</p>
-  </div>
+
 </div>
 </div>
 

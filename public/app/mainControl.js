@@ -13,7 +13,7 @@ function infoGraphic($scope, $http, $window, $document){
     $scope.monthLabels = Object.keys($scope.insideOut.month)
     $scope.stateLabels = Object.keys($scope.insideOut.state)
     $scope.ageLabels = Object.keys($scope.insideOut.age)
-
+  
 
 
 

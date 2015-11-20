@@ -23,8 +23,9 @@
   display: inline-block;
 }
 .text{
-  width: 75vw;
-  padding-right: 8vw;
+  width: 70vw;
+  padding-right: 15vw;
+  padding-left:15vw;
   overflow: auto;
   position: fixed;
   float: right;
