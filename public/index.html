@@ -5,20 +5,26 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
 <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-scroll/0.7.4/angular-scroll.js"></script>
 <script src="app/app.js"></script>
 <script src="app/mainControl.js"></script>
+<script src="app/navControl.js"></script>
+<script src="app/jqueryScroll.js"></script>
+
+
+
 <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
 
 </head>
 
 <body >
-  <div class="site">
-  <div class="nav">
+  <div class="site" ng-app="liveInfoGraphic">
+  <div class="nav" ng-controller='navCtrl' >
     <h1 class = "navtitle">The Counted API</h1>
-    <div class = "navlist">
-      <div>About The Counted API</div>
-      <div>Live Infographic</div>
-      <div>Documentation</div>
+    <div class = "navlist" >
+      <a href="#about">About The Counted API</a>
+      <a href="#live">Live Infographic</a>
+      <a href="#docs">Documentation</a>
     </div>
   </div>
 <div class="text">
@@ -30,7 +36,7 @@
        <a href ='http://www.theguardian.com/us-news/ng-interactive/2015/jun/01
        /the-counted-police-killings-us-database'>The Guardian's The Counted database</a>.</p>
   </div>
-  <div class="about">
+  <div class="about" id='about'>
     <h3>About The Counted API</h3>
     <p>The Counted API is an API, or Application Programming Interface, for
       officer involved killings in the United States of America. The data is
@@ -40,28 +46,39 @@
       so that you can see it, make cool things with it, and share it.
     </p>
   </div>
-  <div class="example" ng-app='liveInfoGraphic' ng-controller='liveInfoGraphicCtrl'>
+  <div class="example" ng-controller='liveInfoGraphicCtrl' id='live'>
     <h3>Live Infographic</h3>
-    <h2> Total: {{counted.length}}</h2>
-    <h1>Race Breakdown</h1>
-    <canvas id="pie" class="chart chart-pie racePie"
-      chart-data="raceData" chart-labels="raceLabels" chart-legend="true">
+    <h2> Total: <z>{{counted.length}}<z></h2>
+    <h1>When do the shootings occur?</h1>
+    <canvas id="line2" class="chart chart-bar"
+                    chart-data="monthData"
+                    chart-labels='monthLabels'
+                    chart-series='[2015]'
+                    chart-legend="true"
+                    chart-click="">
     </canvas>
-    <h1>Sex Breakdown</h1>
-    <canvas id="pie2" class="chart chart-pie racePie"
-      chart-data="sexData" chart-labels="sexLabels" chart-legend="true">
-    </canvas>
-    <!-- <div ng-repeat="(key, value) in insideOut">
-      <div ng-if="key == 'race' || key =='sex'" >
-        <b>{{key}}</b>
+
+    <div ng-repeat="(key, value) in insideOut">
+      <div ng-if="key == 'race' || key =='sex' || key =='armed' || key =='cause'" class = "dataTable" >
+        <b>{{key | uppercase}}</b>
       <div ng-repeat="(label, count) in value">
         <td> {{label}} : </td> <td> {{ count }} </td>
       </div>
-      <br>
+      <br ng-if({{index}}%4==0)>
     </div>
-    </div> -->
+    </div>
+    <h1>Which states kill the most??</h1>
+    <canvas id="line2" class="chart chart-bar"
+                    chart-data="stateData"
+                    chart-labels='stateLabels'
+                    >
+    </canvas>
+    <h2> The youngest person killed by police this year was <z>{{ageLabels.sort()[0]}}</z> years old</h2>
+    <h2> The oldest person killed by police this year was <z>{{oldest}}</z> years old</h2>
+
+
   </div>
-  <div class="howToUse">
+  <div class="howToUse" id='docs'>
     <h3>Documentation</h3>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam id lectus in tellus vehicula convallis sed in orci. Fusce at arcu nec nisi molestie dapibus. Phasellus vel egestas eros. Integer porta ornare enim non rutrum. Morbi ultrices dolor a auctor efficitur. Donec id orci vel tellus tincidunt fringilla vel vitae justo. Fusce semper nisi maximus nunc semper varius. Maecenas eu venenatis lectus, non posuere enim. Quisque erat massa, faucibus vitae orci vitae, feugiat blandit ante. Cras consectetur tellus sed semper pretium. Fusce vel nulla mauris. Integer iaculis tortor dui, ac vulputate felis laoreet quis. Phasellus dapibus velit eget mollis porttitor. Phasellus euismod est at ultricies euismod. Nullam ac nibh non nulla tristique sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae nulla sem. Nam viverra quis lectus id mattis. Morbi lacinia egestas libero et ornare. Vivamus non diam sit amet nulla commodo varius. Aenean mattis, nibh at tristique condimentum, ligula erat malesuada nunc, mattis sagittis orci erat ac nibh. In eget accumsan lacus, nec rhoncus lacus. Duis vitae rutrum nisl. Duis non massa vel quam semper aliquam. Aenean id nibh eget ante maximus volutpat. Nullam pulvinar turpis non odio efficitur rutrum. Vivamus sem ex, interdum vitae metus ac, dictum finibus leo. Vestibulum mauris est, faucibus eget orci vitae, viverra luctus nunc. Ut aliquet, justo id volutpat aliquam, leo nunc venenatis erat, sed congue orci erat in felis. In a neque sit amet arcu interdum pretium sed sit amet magna. Nunc laoreet lacus velit, sit amet elementum urna finibus eu. Sed consequat cursus orci in consequat.</p>
   </div>

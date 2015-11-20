@@ -1,4 +1,5 @@
-var app = angular.module('liveInfoGraphic', ["chart.js"]);
+var app = angular.module('liveInfoGraphic', ["chart.js", 'duScroll']);
+
 
 // factories
 
