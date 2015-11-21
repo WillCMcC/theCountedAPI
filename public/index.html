@@ -34,14 +34,13 @@
     <h1 class="r">API</h1>
 
     <p>Welcome to The Counted API. This site provides a REST API for
-       <a href ='http://www.theguardian.com/us-news/ng-interactive/2015/jun/01
-       /the-counted-police-killings-us-database'>The Guardian's The Counted database</a>.</p>
+       <a href ='https://theguardian.com/us-news/ng-interactive/2015/jun/01/the-counted-police-killings-us-database'>The Guardian's The Counted database</a>.</p>
   </div>
   <div class="about" id='about'>
     <h3>About The Counted API</h3>
     <p>The Counted API is an API, or Application Programming Interface, for
       officer involved killings in the United States of America. The data is
-      sourced from The Guardian's The Counted database. In plain english -- the
+      sourced from The Guardian's The Counted project. In plain english -- The
       Guardian keeps a spreadsheet of information about citizens killed by police
       in the United States. This website is a tool to let you access that information
       so that you can see it, make cool things with it, and share it.
@@ -58,43 +57,76 @@
       will have the following list of properties: Name, Address, Age, Armed, Cause,
       City, State, Day, Month, Year, Race, and Sex.
     </p>
+    <p>I definitely reccomend pulling the full data set -- it's not a huge get and
+      it is preferable to making multiple parameterized calls.</p>
   </div>
   <div class="example" ng-controller='liveInfoGraphicCtrl' id='live'>
     <h3>Live Infographic</h3>
-    <h2> Total: <z>{{counted.length}}<z></h2>
+    <p>This is an example of a what you can do with this data. These numbers will
+    change over time as the data in the databse changes.
+    </p>
+
+    <h2> Total Dead: <z>{{counted.length}}<z></h2>
+      <h3>This is a responsive graph. Use the menu to chose a metric to display
+        in the pie chart.
+      </h3>
+
+      <div class='responsiveTitler'>
+        <div class='respTableWrapper'>
+        <div ng-repeat="(key, value) in insideOut">
+          <div ng-if="key == 'race' && respTable == 'race' || key =='sex' && respTable == 'sex' || key =='armed' && respTable == 'armed' || key =='cause' && respTable == 'cause'" class = "dataTable" >
+            <b>{{key | uppercase}}</b>
+          <div ng-repeat="(label, count) in value">
+            <td> {{label}} : </td> <td> {{ count }} </td>
+          </div>
+        </div>
+        </div>
+      </div>
+        <select class="respPicker"name="singleSelect" ng-model="singleSelect" ng-change="update(singleSelect)">
+            <option value="Race">Race</option>
+            <option value="Cause">Cause of Death</option>
+            <option value="Sex">Sex</option>
+            <option value="Armed">Armed</option>
+          </select><br>
+        <h1 class="respTitleClass">{{respTitle}}</h1>
+      </div>
+        <canvas id="pieresp" class="chart chart-pie"
+                        chart-data="respData"
+                        chart-labels='respLabel'
+                        chart-legend="true"
+                        chart-click="">
+        </canvas>
+
+
     <h1>When do the shootings occur?</h1>
     <canvas id="line2" class="chart chart-bar"
                     chart-data="monthData"
                     chart-labels='monthLabels'
-                    chart-series='[2015]'
                     chart-legend="true"
                     chart-click="">
     </canvas>
 
-    <div ng-repeat="(key, value) in insideOut">
-      <div ng-if="key == 'race' || key =='sex' || key =='armed' || key =='cause'" class = "dataTable" >
-        <b>{{key | uppercase}}</b>
-      <div ng-repeat="(label, count) in value">
-        <td> {{label}} : </td> <td> {{ count }} </td>
-      </div>
-      <br ng-if({{index}}%4==0)>
-    </div>
-    </div>
+
     <h1>Which states kill the most?</h1>
     <canvas id="line2" class="chart chart-bar"
                     chart-data="stateData"
                     chart-labels='stateLabels'
                     >
     </canvas>
-    <h2> The youngest person killed by police this year was <z>{{ageLabels.sort()[0]}}</z> years old</h2>
-    <h2> The oldest person killed by police this year was <z>{{oldest}}</z> years old</h2>
-    <h1>Race breakdown</h1>
-    <canvas id="line2" class="chart chart-pie"
-                    chart-data="raceData"
-                    chart-labels='raceLabels'
+
+    <h2> The youngest person killed by police this year was <z>{{youngest}}</z> years old,
+
+    and the oldest was <z>{{oldest}}</z> years old</h2>
+    <h1>% Killed by Race vs % of General Population by Race</h1>
+    <canvas id="line2" class="chart chart-bar"
+                    chart-data="raceBarData"
+                    chart-labels='raceBarLabels'
+                    chart-series='raceSeries'
                     chart-legend="true"
-                    chart-click="">
+                    >
     </canvas>
+    <p>*The US Census does not count Arab-Americans</p>
+
 
   </div>
 

@@ -3,12 +3,11 @@
   height: 50vh;
   color: black;
   text-align: center;
-  color: blue;
-  font-size: 3vh;:
+  font-size: 3vh;
+  font-weight: bolder;
 }
 .welcome a{
-  color: black;
-  color: red;
+  color: grey;
 }
 .welcome .b{
   color: blue;
@@ -64,7 +63,22 @@
   display: inline-block;
 }.example z{
   color: red;
+
 }.example h2{
   font-size: 8vh;
   text-align: center;
+}.responsiveTitler{
+  text-align: left;
+  font-size: 2vh;
+
+
+}.respTitleClass{
+    float: center;
+}.respPicker{
+  width: 10%;
+    height: 10px;
+float: left;
+}.respTableWrapper{
+  right: 0px;
+  text-align: left;
 }

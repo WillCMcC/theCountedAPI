@@ -1,9 +1,45 @@
 app.controller('liveInfoGraphicCtrl', infoGraphic)
 
 function infoGraphic($scope, $http, $window, $document){
-  console.log('test')
   $http.get('/api/counted').
   success(function(data, status, headers, config) {
+
+    $scope.update = function(responsder){
+      console.log(responsder);
+      switch (responsder) {
+        case 'Race':
+        $scope.respData = $scope.raceData;
+        $scope.respLabel = $scope.raceLabels;
+        $scope.respTable = 'race';
+        $scope.respTitle = 'Race of the victim';
+        break
+        case 'Sex':
+        $scope.respData = $scope.sexData;
+        $scope.respLabel = $scope.sexLabels;
+        $scope.respTable = 'sex';
+        $scope.respTitle = 'Sex of the victim';
+
+        break
+        case 'Cause':
+        $scope.respData = $scope.causeData;
+        $scope.respLabel = $scope.causeLabels;
+        $scope.respTable = 'cause';
+        $scope.respTitle = 'Cause of Death';
+
+        break
+        case 'Armed':
+        $scope.respData = $scope.armedData;
+        $scope.respLabel = $scope.armedLabels;
+        $scope.respTable = 'armed';
+        $scope.respTitle = 'Armed';
+
+
+        break
+        default:
+
+      }
+
+    }
 
     $scope.counted = data;
     $scope.insideOut = flipObj(data);
@@ -12,11 +48,8 @@ function infoGraphic($scope, $http, $window, $document){
     $scope.armedLabels = Object.keys($scope.insideOut.armed)
     $scope.monthLabels = Object.keys($scope.insideOut.month)
     $scope.stateLabels = Object.keys($scope.insideOut.state)
+    $scope.causeLabels = Object.keys($scope.insideOut.cause)
     $scope.ageLabels = Object.keys($scope.insideOut.age)
-  
-
-
-
 
     $scope.raceData = []
     $scope.sexData = []
@@ -24,9 +57,27 @@ function infoGraphic($scope, $http, $window, $document){
     $scope.monthData = [[]]
     $scope.stateData = [[]]
     $scope.ageData = []
+    $scope.causeData = []
+
+    // responsive graph stuff
+    $scope.respData = $scope.raceData;
+    $scope.respLabel = $scope.raceLabels;
+    $scope.respTitle = 'Race of the victim';
+    $scope.respTable = 'race';
 
 
 
+  $scope.singleSelect = 'Race'
+
+    // calculate youngest killed
+    $scope.youngest = $scope.ageLabels.reduce(function(a, b, i, arr) {
+      if(isNaN(a) ){
+        a = 100;
+      }  if(isNaN(b)){
+          b = 100;
+        }
+      return Math.min(a,b)}
+    );
 
 
     for(var i=0;i<$scope.raceLabels.length;i++){
@@ -47,11 +98,30 @@ function infoGraphic($scope, $http, $window, $document){
     for(var i=0;i<$scope.ageLabels.length;i++){
       $scope.ageData.push($scope.insideOut.age[$scope.ageLabels[i]])
     }
-    console.log($scope.ageLabels.sort())
-    $scope.oldest = $scope.ageLabels.sort()[$scope.ageLabels.length - 2];
-    console.log("oldest: " + $scope.oldest)
+    for(var i=0;i<$scope.causeLabels.length;i++){
+      $scope.causeData.push($scope.insideOut.cause[$scope.causeLabels[i]])
+    }
+    $scope.raceBarData = [[],[]]
 
-    console.log($scope.stateData + "," + $scope.stateLabels)
+    $scope.raceData.forEach(
+      function(value, index, array1){
+        array1[index] = value / data.length;
+        console.log(array1[index])
+        $scope.raceBarData[0].push(Math.round(array1[index] * 10000) / 100);
+      }
+    );
+    $scope.raceBarData[1] = [13.2,62.1,6.6,17.4,0,.2,0,0]
+    $scope.raceBarLabels = $scope.raceLabels;
+    $scope.raceSeries = ['Victims', 'General Population']
+    console.log($scope.raceBarLabels)
+    console.log($scope.raceBarData)
+
+
+
+
+
+    $scope.oldest = $scope.ageLabels.sort()[$scope.ageLabels.length - 2];
+
 
   }).
   error(function(data, status, headers, config) {
@@ -67,7 +137,6 @@ function flipObj(d){
   for(var i=0;i<keys.length;i++){
       insideOut[keys[i]] = {};
   }
-  console.log(insideOut)
   for(var i=0;i<d.length;i++){
     for(var j=0;j<keys.length;j++){
         if( Object.keys(insideOut[keys[j]]).indexOf(d[i][keys[j]]) == -1){
