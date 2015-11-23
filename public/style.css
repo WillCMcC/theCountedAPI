@@ -1,14 +1,84 @@
 .welcome{
-  height: 20vh;
-  top: 10vh;
-  margin-top: 20vh;
+  padding-top: 20vh;
+  height: 50vh;
+  color: black;
   text-align: center;
+  font-size: 3vh;
+  font-weight: bolder;
 }
-.site{
-  top:10vh;
-  height: 500%;
-  margin: 20px;
+.welcome a{
+  color: grey;
 }
-body {
-  position: relative;
+.welcome .b{
+  color: blue;
+  font-size: 10vh;
+  font-weight: lighter;
+  display: inline-block;
+}
+.welcome .r{
+  color: red;
+  font-size: 10vh;
+  font-weight: lighter;
+  display: inline-block;
+}
+.text{
+  width: 70vw;
+  padding-right: 15vw;
+  padding-left:15vw;
+  overflow: auto;
+  position: fixed;
+  float: right;
+  top: 0%;
+  right: 0%;
+  height: 100%;
+
+}.howToUse{
+  float: left;
+}.nav{
+  width:15vw;
+  height: 100%;
+}.navlist li {
+    text-align: left;
+    list-style-type: none;
+    display:inline-block
+}
+.nav h1{
+  font-size: 3vh;
+  display: inline-block;
+}.nav a{
+  color: black;
+  text-decoration: none ;
+}.navtitle{
+  padding-top: 20vh;
+}body{
+  font-family: proxima-nova, sans-serif;
+}.site{
+  display: inline-block;
+}.racePie{
+}canvas{
+  width:10vw;
+}.dataTable{
+  width:25%;
+  float: left;
+  display: inline-block;
+}.example z{
+  color: red;
+
+}.example h2{
+  font-size: 8vh;
+  text-align: center;
+}.responsiveTitler{
+  text-align: left;
+  font-size: 2vh;
+
+
+}.respTitleClass{
+    float: center;
+}.respPicker{
+  width: 10%;
+    height: 10px;
+float: left;
+}.respTableWrapper{
+  right: 0px;
+  text-align: left;
 }

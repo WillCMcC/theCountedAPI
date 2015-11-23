@@ -40,12 +40,26 @@ request.get('https://interactive.guim.co.uk/2015/the-counted/thecounted-data.zip
     if (!error && response.statusCode == 200) {
       console.log("got it")
       var c = [];
-      a = body.split("\n");
+      a = body.split('\n');
+			var bcomp = 0;
       for(var i = 2; i < a.length - 8; i++){
-        b = a[i].split(",")
-				if(b.length>5){
-					console.log(b);
-				// console.log(b[0])
+				var indexer = [];
+				// console.log(a[i]);
+				while(a[i].length > 0){
+					var subber = a[i].substring(1,a[i].indexOf('"', 1))
+					if(subber.length != 1 || (subber.length ==1 && !isNaN(subber))) {indexer.push(subber)};
+					a[i] = a[i].substring(1, a[i].length)
+					a[i] = a[i].substring(a[i].indexOf('"'), a[i].length)
+				}
+
+
+				if(indexer.length != bcomp){
+					console.log("new length: " + indexer.length)
+					console.log(indexer);
+					bcomp = indexer.length;
+				}
+				console.log(indexer.length);
+				var b = indexer;
         var g = new Person({
 					id: b[0].replace(/"/g, ""),
           name: b[1].replace(/"/g, ""),
@@ -65,6 +79,7 @@ request.get('https://interactive.guim.co.uk/2015/the-counted/thecounted-data.zip
 				g.save(function(err, data){
 					if(err){console.log(err)}
 					console.log(data)
+
 				})
 			}
 

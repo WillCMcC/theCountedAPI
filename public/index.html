@@ -1,31 +1,136 @@
-hello world
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 <link rel="stylesheet" href="style.css">
 
-<script src="https://code.jquery.com/jquery-2.1.4.min.js" </script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js" ></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+<script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-scroll/0.7.4/angular-scroll.js"></script>
+<script src="app/app.js"></script>
+<script src="app/mainControl.js"></script>
+<script src="app/navControl.js"></script>
+<script src="app/jqueryScroll.js"></script>
+
+
+
+<link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
 
 </head>
 
-<body data-spy="scroll" data-target=".navbar">
-  //navbar
-<nav class="navbar navbar-default navbar-fixed-top">
-  <p class="navbar-text navbar-left"> The Counted </p>
-  <ul class="nav nav-tabs" role="tablist">
-      <li>How To Use<li>
-    </ul>
-</nav>
-<div class=" site">
+<body >
+  <div class="site" ng-app="liveInfoGraphic">
+  <!-- <div class="nav" ng-controller='navCtrl' >
+    <h1 class = "navtitle">The Counted API</h1>
+    <div class = "navlist" >
+      <li><a href="#about">About The Counted API</a></li>
+      <li><a href="#docs">Documentation</a></li>
+      <li><a href="#live">Live Infographic</a></li>
+
+    </div>
+  </div> -->
+<div class="text">
   <div class='welcome'>
-    <h1>The Counted</h1>
+    <h1 class="b">The Counted</h1>
+    <h1 class="r">API</h1>
+
     <p>Welcome to The Counted API. This site provides a REST API for
-       <a href ='http://www.theguardian.com/us-news/ng-interactive/2015/jun/01
-       /the-counted-police-killings-us-database'>The Guardian's The Counted database</a>.</p>
+       <a href ='https://theguardian.com/us-news/ng-interactive/2015/jun/01/the-counted-police-killings-us-database'>The Guardian's The Counted database</a>.</p>
   </div>
-  <div class="howToUse">
-    <h3>How To Use This API</h3>
-    <p></p>
+  <div class="about" id='about'>
+    <h3>About The Counted API</h3>
+    <p>The Counted API is an API, or Application Programming Interface, for
+      officer involved killings in the United States of America. The data is
+      sourced from The Guardian's The Counted project. In plain english -- The
+      Guardian keeps a spreadsheet of information about citizens killed by police
+      in the United States. This website is a tool to let you access that information
+      so that you can see it, make cool things with it, and share it.
+    </p>
+  </div>
+  <div class="howToUse" id='docs' >
+    <h3>Documentation</h3>
+    <p>
+      There is just a single URL for this API. It returns a JSON. That URL is
+      /api/counted. Making a get request to /api/counted will return the full set of
+      officer involved killings this year. You can pass in arbitrary search key
+      value pairs with this format -- /api/counted?key=value&key&value. You will
+      receive an array of all objects that match your search. All of the objects
+      will have the following list of properties: Name, Address, Age, Armed, Cause,
+      City, State, Day, Month, Year, Race, and Sex.
+    </p>
+    <p>I definitely reccomend pulling the full data set -- it's not a huge get and
+      it is preferable to making multiple parameterized calls.</p>
+  </div>
+  <div class="example" ng-controller='liveInfoGraphicCtrl' id='live'>
+    <h3>Live Infographic</h3>
+    <p>This is an example of a what you can do with this data. These numbers will
+    change over time as the data in the databse changes.
+    </p>
+
+    <h2> Total Dead: <z>{{counted.length}}<z></h2>
+      <h3>This is a responsive graph. Use the menu to chose a metric to display
+        in the pie chart.
+      </h3>
+
+      <div class='responsiveTitler'>
+        <div class='respTableWrapper'>
+        <div ng-repeat="(key, value) in insideOut">
+          <div ng-if="key == 'race' && respTable == 'race' || key =='sex' && respTable == 'sex' || key =='armed' && respTable == 'armed' || key =='cause' && respTable == 'cause'" class = "dataTable" >
+            <b>{{key | uppercase}}</b>
+          <div ng-repeat="(label, count) in value">
+            <td> {{label}} : </td> <td> {{ count }} </td>
+          </div>
+        </div>
+        </div>
+      </div>
+        <select class="respPicker"name="singleSelect" ng-model="singleSelect" ng-change="update(singleSelect)">
+            <option value="Race">Race</option>
+            <option value="Cause">Cause of Death</option>
+            <option value="Sex">Sex</option>
+            <option value="Armed">Armed</option>
+          </select><br>
+        <h1 class="respTitleClass">{{respTitle}}</h1>
+      </div>
+        <canvas id="pieresp" class="chart chart-pie"
+                        chart-data="respData"
+                        chart-labels='respLabel'
+                        chart-legend="true"
+                        chart-click="">
+        </canvas>
+
+
+    <h1>When do the shootings occur?</h1>
+    <canvas id="line2" class="chart chart-bar"
+                    chart-data="monthData"
+                    chart-labels='monthLabels'
+                    chart-legend="true"
+                    chart-click="">
+    </canvas>
+
+
+    <h1>Which states kill the most?</h1>
+    <canvas id="line2" class="chart chart-bar"
+                    chart-data="stateData"
+                    chart-labels='stateLabels'
+                    >
+    </canvas>
+
+    <h2> The youngest person killed by police this year was <z>{{youngest}}</z> years old,
+
+    and the oldest was <z>{{oldest}}</z> years old</h2>
+    <h1>% Killed by Race vs % of General Population by Race</h1>
+    <canvas id="line2" class="chart chart-bar"
+                    chart-data="raceBarData"
+                    chart-labels='raceBarLabels'
+                    chart-series='raceSeries'
+                    chart-legend="true"
+                    >
+    </canvas>
+    <p>*The US Census does not count Arab-Americans</p>
+
+
+  </div>
+
+</div>
 </div>
 
 </body>
