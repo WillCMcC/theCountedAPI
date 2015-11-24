@@ -86,7 +86,7 @@ request.get('https://interactive.guim.co.uk/2015/the-counted/thecounted-data.zip
       }
 
     }
-}, function(error, data){
+, function(error, data){
     console.log(data)
 
 

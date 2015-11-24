@@ -8,6 +8,7 @@ function infoGraphic($scope, $http, $window, $document){
       console.log(responsder);
       switch (responsder) {
         case 'Race':
+        console.log($scope.raceData)
         $scope.respData = $scope.raceData;
         $scope.respLabel = $scope.raceLabels;
         $scope.respTable = 'race';
@@ -81,6 +82,7 @@ function infoGraphic($scope, $http, $window, $document){
 
 
     for(var i=0;i<$scope.raceLabels.length;i++){
+      console.log($scope.insideOut.race[$scope.raceLabels[i]])
       $scope.raceData.push($scope.insideOut.race[$scope.raceLabels[i]])
     }
     for(var i=0;i<$scope.sexLabels.length;i++){
@@ -102,19 +104,17 @@ function infoGraphic($scope, $http, $window, $document){
       $scope.causeData.push($scope.insideOut.cause[$scope.causeLabels[i]])
     }
     $scope.raceBarData = [[],[]]
-
-    $scope.raceData.forEach(
+    $scope.raceGraphData = []
+    $scope.raceGraphData = $scope.raceData.slice(0);
+    $scope.raceGraphData.forEach(
       function(value, index, array1){
         array1[index] = value / data.length;
-        console.log(array1[index])
         $scope.raceBarData[0].push(Math.round(array1[index] * 10000) / 100);
       }
     );
-    $scope.raceBarData[1] = [13.2,62.1,6.6,17.4,0,.2,0,0]
+    $scope.raceBarData[1] = [62.1,6.6,17.4,13.2,0,.2,0,0]
     $scope.raceBarLabels = $scope.raceLabels;
     $scope.raceSeries = ['Victims', 'General Population']
-    console.log($scope.raceBarLabels)
-    console.log($scope.raceBarData)
 
 
 
