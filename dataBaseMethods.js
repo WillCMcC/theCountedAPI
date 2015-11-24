@@ -50,6 +50,12 @@ module.exports.findAll = function(res){
   });
 }
 module.exports.findFilter = function(res, data){
+var searchKeys = Object.keys(data);
+  for(var i=0;i<searchKeys.length;i++){
+    var regex = new RegExp(["^", data[searchKeys[i]], "$"].join(""), "i");
+    data[searchKeys[i]] = regex;
+  }
+// Creates a regex of: /^SomeStringToFind$/i
   Person.find(data).
   exec(function(err,data){
     if(err){
