@@ -9,7 +9,14 @@ var cors = require('cors');
 var dataBaseMethods = require('./dataBaseMethods');
 
 var app = express();
-app.use(express.static('public'));
+app.use(express.static('public'), function(req,res,next){
+  var datenTime = new Date();
+  var dateString = datenTime.getMonth() + "/" + datenTime.getDate() + " at " +
+    datenTime.getHours() + ":" + datenTime.getMinutes()
+      + "." + datenTime.getSeconds();
+  console.log('Route Call to ' + req.url + " at "+ dateString);
+  next();
+});
 
 // Make a router
 var apirouter = express.Router();
@@ -19,7 +26,6 @@ var cache = new CacheControl().middleware
 // middleware to use for all requests
 apirouter.use(cache("hours", 3), cors(), function(req, res, next) {
     // do logging
-    console.log('Route Call to ' + req.url);
   // make sure we go to the next routes and don't stop here
     next();
 });
