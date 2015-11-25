@@ -14,7 +14,7 @@ app.use(express.static('public'), function(req,res,next){
   var dateString = datenTime.getMonth() + "/" + datenTime.getDate() + " at " +
     datenTime.getHours() + ":" + datenTime.getMinutes()
       + "." + datenTime.getSeconds();
-  console.log('Route Call to ' + req.url + " at "+ dateString);
+  console.log('Route Call to ' + req.url + " at "+ dateString + " from " + req.ip);
   next();
 });
 
