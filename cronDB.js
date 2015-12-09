@@ -7,37 +7,12 @@ var peopleArr = [];
 var saveCounter = 0;
 var skipCounter = 0;
 
-var mongoDatabase = 'mongodb://localhost/theCountedData' ;
-mongoose.connect(mongoDatabase);
-var db = mongoose.connection;
-db.on('error', function (err) {
-	console.log('connection error', err);
-});
-db.once('open', function () {
-	console.log('connected.');
 
-});
 
-//Define Squid Schema
-var Schema = mongoose.Schema;
-var personSchema = new Schema({
-      name: String,
-      age: String,
-      sex: String,
-      race: String,
-      month: String,
-      day: String,
-      year: String,
-      address: String,
-      city: String,
-      state: String,
-      cause: String,
-      dept: String,
-      armed: String,
-});
+
 a = [];
 // Schema to DB Model
-var Person = mongoose.model('Person', personSchema);
+var Person = mongoose.model('Person');
 
 
 function getCSV(){
@@ -102,7 +77,8 @@ new CronJob('* * */6 * * *', function() {
 
 
 // start
-
+peopleArr =[];
+getCSV();
 
 
 function checkCSV(){
