@@ -4,6 +4,7 @@
   height: auto;
   text-align: center;
   font-weight: bolder;
+  padding-bottom: 20vhk
 }
 .welcome a{
   color: grey;
@@ -82,4 +83,6 @@ float: left;
 }.respTableWrapper{
   right: 0px;
   text-align: left;
+}.theMeat{
+  padding-top: 30vh;
 }
