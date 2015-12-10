@@ -6,13 +6,13 @@ var mongoose = require("mongoose");
 
 var mongoDatabase = 'mongodb://localhost/theCountedData';
 mongoose.connect( mongoDatabase);
+
 var db = mongoose.connection;
 db.on('error', function (err) {
 	console.log('connection error', err);
 });
 db.once('open', function () {
 	console.log('connected.');
-
 });
 
 //Define Squid Schema
@@ -76,6 +76,9 @@ request.get('https://interactive.guim.co.uk/2015/the-counted/thecounted-data.zip
           dept: b[12].replace(/"/g, ""),
           armed: b[13].replace(/"/g, ""),
         })
+				if(i == a.length-9){
+					console.log("last item")
+				}
 				g.save(function(err, data){
 					if(err){console.log(err)}
 					console.log(data)

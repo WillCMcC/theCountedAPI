@@ -66,7 +66,7 @@ function getCSV(){
 }
 
 //cron
-new CronJob('* * */6 * * *', function() {
+new CronJob('0 0 */6 * * *', function() {
   console.log("running CSV check")
   peopleArr =[];
   getCSV();
