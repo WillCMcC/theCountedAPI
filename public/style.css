@@ -1,9 +1,8 @@
 .welcome{
   padding-top: 20vh;
-  height: 50vh;
   color: black;
+  height: auto;
   text-align: center;
-  font-size: 3vh;
   font-weight: bolder;
 }
 .welcome a{
@@ -11,15 +10,17 @@
 }
 .welcome .b{
   color: blue;
-  font-size: 10vh;
-  font-weight: lighter;
+  font-size: 9vw;
+  font-weight:  lighter;
   display: inline-block;
+  line-height: 1px;
 }
 .welcome .r{
   color: red;
-  font-size: 10vh;
-  font-weight: lighter;
+  font-size: 9vw;
+  font-weight: normal;
   display: inline-block;
+  line-height: 1px;
 }
 .text{
   width: 70vw;
@@ -43,13 +44,13 @@
     display:inline-block
 }
 .nav h1{
-  font-size: 3vh;
+  font-size: 3vw;
   display: inline-block;
 }.nav a{
   color: black;
   text-decoration: none ;
 }.navtitle{
-  padding-top: 20vh;
+  padding-top: 20vw;
 }body{
   font-family: proxima-nova, sans-serif;
 }.site{
@@ -65,11 +66,11 @@
   color: red;
 
 }.example h2{
-  font-size: 8vh;
+  font-size: 8vw;
   text-align: center;
 }.responsiveTitler{
   text-align: left;
-  font-size: 2vh;
+  font-size: 2vw;
 
 
 }.respTitleClass{

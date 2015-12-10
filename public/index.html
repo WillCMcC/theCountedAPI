@@ -36,6 +36,7 @@
     <p>Welcome to The Counted API. This site provides a REST API for
        <a href ='https://theguardian.com/us-news/ng-interactive/2015/jun/01/the-counted-police-killings-us-database'>The Guardian's The Counted database</a>.</p>
   </div>
+	<div class="theMeat">
   <div class="about" id='about'>
     <h3>About The Counted API</h3>
     <p>The Counted API is an API, or Application Programming Interface, for
@@ -46,13 +47,15 @@
       so that you can see it, make cool things with it, and share it.
     </p>
   </div>
-  <div class="howToUse" id='docs' >
+  <div class="howToUse" id='docs' ng-controller='liveInfoGraphicCtrl'>
     <h3>Documentation</h3>
     <p>
       There is just a single URL for this API. It returns a JSON. That URL is
-      /api/counted. Making a get request to /api/counted will return the full set of
+      <a href="{{hereIAm}}api/counted">{{hereIAm}}api/counted</a>. Making a get request to /api/counted will return the full set of
       officer involved killings this year. You can pass in arbitrary search key
-      value pairs with this format -- /api/counted?key=value&key=value. You will
+      value pairs with the format {{hereIAm}}api/counted?key=value&key=value -- for example, for a list of all
+			officer involved shootings in Connecticut, you would use :
+			<a href="{{hereIAm}}api/counted/?state=CT">{{hereIAm}}api/counted/?state=CT</a>. You will
       receive an array of all objects that match your search. All of the objects
       will have the following list of properties: Name, Address, Age, Armed, Cause,
       City, State, Day, Month, Year, Race, and Sex.
@@ -130,6 +133,7 @@
 
   </div>
 
+</div>
 </div>
 </div>
 

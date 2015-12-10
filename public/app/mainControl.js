@@ -1,6 +1,8 @@
 app.controller('liveInfoGraphicCtrl', infoGraphic)
 
 function infoGraphic($scope, $http, $window, $document){
+  console.log($window.location.href)
+  $scope.hereIAm = $window.location.href;
   $http.get('/api/counted').
   success(function(data, status, headers, config) {
 
