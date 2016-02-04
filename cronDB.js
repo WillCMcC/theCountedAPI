@@ -33,23 +33,26 @@ function getCSV(){
   					a[i] = a[i].substring(a[i].indexOf('"'), a[i].length)
   				}
   				var b = indexer;
-          var g = new Person({
-  					id: b[0].replace(/"/g, ""),
-            name: b[1].replace(/"/g, ""),
-            age: b[2].replace(/"/g, ""),
-            sex: b[3].replace(/"/g, ""),
-            race: b[4].replace(/"/g, ""),
-            month: b[5].replace(/"/g, ""),
-            day: b[6].replace(/"/g, ""),
-            year: b[7].replace(/"/g, ""),
-            address: b[8].replace(/"/g, ""),
-            city: b[9].replace(/"/g, ""),
-            state: b[10].replace(/"/g, ""),
-            cause: b[11].replace(/"/g, ""),
-            dept: b[12].replace(/"/g, ""),
-            armed: b[13].replace(/"/g, ""),
-          })
-          peopleArr.push(g)
+          if(b.length >12){
+            var g = new Person({
+              id: b[0].replace(/"/g, ""),
+              name: b[1].replace(/"/g, ""),
+              age: b[2].replace(/"/g, ""),
+              sex: b[3].replace(/"/g, ""),
+              race: b[4].replace(/"/g, ""),
+              month: b[5].replace(/"/g, ""),
+              day: b[6].replace(/"/g, ""),
+              year: b[7].replace(/"/g, ""),
+              address: b[8].replace(/"/g, ""),
+              city: b[9].replace(/"/g, ""),
+              state: b[10].replace(/"/g, ""),
+              cause: b[11].replace(/"/g, ""),
+              dept: b[12].replace(/"/g, ""),
+              armed: b[13].replace(/"/g, ""),
+            })
+            peopleArr.push(g)
+          }
+
   			}
 
         checkCSV();
