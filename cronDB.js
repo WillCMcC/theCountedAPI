@@ -33,7 +33,6 @@ function getCSV(){
   					a[i] = a[i].substring(a[i].indexOf('"'), a[i].length)
   				}
   				var b = indexer;
-<<<<<<< HEAD
           if(b.length >12){
             var g = new Person({
               id: b[0].replace(/"/g, ""),
