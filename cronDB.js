@@ -54,12 +54,12 @@ function getCSV(){
           }
 
   			}
-	}
+	     }
         checkCSV();
 
         }
 
-      }
+
   , function(error, data){
       console.log(data)
 
