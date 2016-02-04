@@ -1,6 +1,8 @@
 app.controller('liveInfoGraphicCtrl', infoGraphic)
 
 function infoGraphic($scope, $http, $window, $document){
+  console.log($window.location.href)
+  $scope.hereIAm = $window.location.href;
   $http.get('/api/counted').
   success(function(data, status, headers, config) {
 
@@ -112,9 +114,17 @@ function infoGraphic($scope, $http, $window, $document){
         $scope.raceBarData[0].push(Math.round(array1[index] * 10000) / 100);
       }
     );
-    $scope.raceBarData[1] = [62.1,6.6,17.4,13.2,0,.2,0,0]
-    $scope.raceBarLabels = $scope.raceLabels;
+    $scope.raceBarData[1] = [13.2,62.1,17.4,.2,5.4]
+    $scope.raceBarLabelerer = $scope.raceLabels;
     $scope.raceSeries = ['Victims', 'General Population']
+
+    console.log($scope.raceLabels)
+    for (var i=$scope.raceBarLabelerer.length-1; i>=0; i--) {
+    if ($scope.raceBarLabelerer[i] == "Other" || $scope.raceBarLabelerer[i] == "Unknown" || $scope.raceBarLabelerer[i] == "Arab-American") {
+        $scope.raceBarLabelerer.splice(i, 1);
+    }
+    }
+    $scope.raceBarLabels = $scope.raceLabels;
 
 
 
