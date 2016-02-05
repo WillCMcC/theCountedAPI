@@ -1,7 +1,6 @@
 app.controller('liveInfoGraphicCtrl', infoGraphic)
 
 function infoGraphic($scope, $http, $window, $document){
-  console.log($window.location.href)
   $scope.hereIAm = $window.location.href;
   $http.get('/api/counted').
   success(function(data, status, headers, config) {
@@ -50,7 +49,6 @@ function infoGraphic($scope, $http, $window, $document){
       }
     $scope.counted = yearPicker;
     $scope.$watch('yearly', function(newValue){
-      console.log(newValue)
       var yearPicker = [];
       for(var i = 0; i<data.length; i++){
         if(data[i].year == newValue){
@@ -60,7 +58,6 @@ function infoGraphic($scope, $http, $window, $document){
       $scope.counted = yearPicker;
       flipIt($scope.counted)
     })
-    console.log("counted: " + $scope.counted.length)
     var flipIt = function(counted){
 
       if(counted){
@@ -134,7 +131,6 @@ function infoGraphic($scope, $http, $window, $document){
         );
         $scope.raceBarData[1] = [13.2,62.1,17.4,.2,5.4]
 
-        console.log($scope.raceBarData[1])
 
         $scope.raceSeries = ['Victims', 'General Population']
 
@@ -144,7 +140,6 @@ function infoGraphic($scope, $http, $window, $document){
         }
         }
         $scope.raceBarLabels = $scope.raceBarLabelerer;
-        console.log($scope.raceBarLabels)
 
 
 
