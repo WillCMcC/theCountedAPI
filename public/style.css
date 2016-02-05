@@ -85,4 +85,10 @@ float: left;
   text-align: left;
 }.theMeat{
   padding-top: 30vh;
+}.picker{
+  width: 20vw;
+}.yearPickerDiv{
+  margin-left: 20vw;
+}.yearPickerDiv h2{
+  font-size: 3vw;
 }

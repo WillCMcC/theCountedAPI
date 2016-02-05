@@ -66,9 +66,15 @@
   <div class="example" ng-controller='liveInfoGraphicCtrl' id='live'>
     <h3>Live Infographic</h3>
     <p>This is an example of a what you can do with this data. These numbers will
-    change over time as the data in the databse changes.
+    change over time as the data in the database changes. Pick a year to begin. 
     </p>
-
+    <div class='yearPickerDiv'>
+    <h3>Pick a year</h3>
+    <select ng-model='yearly' class="picker">
+      <option value="2015">2015</option>
+      <option value="2016">2016</option>
+    </select>
+  </div>
     <h2> Total Dead: <z>{{counted.length}}<z></h2>
       <h3>This is a responsive graph. Use the menu to chose a metric to display
         in the pie chart.
