@@ -5,7 +5,7 @@ function infoGraphic($scope, $http, $window, $document){
   $scope.hereIAm = $window.location.href;
   $http.get('/api/counted').
   success(function(data, status, headers, config) {
-
+console.log(data)
     $scope.update = function(responsder){
       console.log(responsder);
       switch (responsder) {
