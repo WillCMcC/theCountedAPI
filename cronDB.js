@@ -18,10 +18,17 @@ var Person = mongoose.model('Person');
 function getCSV(){
   console.log("getting")
   request.get('https://interactive.guim.co.uk/2015/the-counted/thecounted-data.zip', function (error, response, body) {
+    console.log(body)
       if (!error && response.statusCode == 200) {
+
         console.log("got it csv")
         var c = [];
         a = body.split('\n');
+        if(a.length >100){
+          Person.remove({}, function(err){
+            console.log('collection removed')
+          })
+        };
   			var bcomp = 0;
         for(var i = 2; i < a.length - 8; i++){
   				var indexer = [];
@@ -50,10 +57,12 @@ function getCSV(){
               dept: b[12].replace(/"/g, ""),
               armed: b[13].replace(/"/g, ""),
             })
+            console.log(g.year);
             peopleArr.push(g)
           }
 
   			}
+        console.log(peopleArr.length)
 	     }
         checkCSV();
 
